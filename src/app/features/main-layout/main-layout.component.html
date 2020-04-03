@@ -1,17 +1,22 @@
-<div>
-    <nav>
+<div class="main-layout">
+    <header class="nav-header">
         <div class="logo">
             <h4>The Nav</h4>
         </div>
-        <ul class="nav-links" [ngClass]="{'nav-active': isToggleMenu}">
-            <li *ngFor="let menuItem of menuItems; let i = index">
-                <a href="#">{{menuItem}}</a>
-            </li>
-        </ul>
         <div class="menu-icon" [ngClass]="{'toggle': isToggleMenu}" (click)="onMenuClick()">
             <div class="line-1"></div>
             <div class="line-2"></div>
             <div class="line-3"></div>
         </div>
-    </nav>
+    </header>
+    <aside class="nav-sidebar" [ngClass]="{'nav-active': isToggleMenu}">
+        <ul class="nav-links">
+            <li *ngFor="let menuItem of menuItems; let i = index">
+                <a href="#">{{menuItem}}</a>
+            </li>
+        </ul>
+    </aside>
+    <main class="main-body">
+        <p>the body div</p>
+    </main>
 </div>
