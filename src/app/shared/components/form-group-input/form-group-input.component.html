@@ -1,0 +1,14 @@
+<div class="form-group" [ngClass]="{ 'form-group--invalid': abstractControl?.invalid && (abstractControl?.touched) }">
+    <div *ngIf="title">
+        <label class="form-group__title" [for]="inputId"
+            title="{{ title }}{{ !required ? ' (Opcional)' : '' }}">{{title}}
+            <span *ngIf="!required" class="form-group__required">
+                (Opcional)
+            </span>
+        </label>
+    </div>
+    <ng-content></ng-content>
+    <div *ngFor="let aError of customErrors" class="form-group__errors-container">
+        <small class="form-group__text-invalid">{{aError}}</small>
+    </div>
+</div>

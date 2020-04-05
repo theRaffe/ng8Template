@@ -1,15 +1,14 @@
 <div class="main-login">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmitLogin()" autocomplete="off">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitLogin()">
         <h1>Title Login</h1>
         <div class="form">
-            <input type="text" name="username" autocomplete="off" required formControlName="username"
-                [readonly]="isReadOnly" />
-            <label for="username" class="label-name">
-                <span class="content-name">Username</span>
-            </label>
-            <div *ngFor="let aError of usernameErrors">
-                <small class="form-text-invalid">{{aError}}</small>
-            </div>
+            <form-group-input [abstractControl]="username" [dictErrors]="usernameErrors">
+                <input type="text" name="username" aria-label="username" autocomplete="off" required
+                    formControlName="username" [readonly]="isReadOnly" />
+                <label for="username" class="label-name">
+                    <span class="content-name">Username</span>
+                </label>
+            </form-group-input>
         </div>
         <div class="form">
             <input type="password" name="password" autocomplete="off" required formControlName="password"
@@ -17,12 +16,9 @@
             <label for="password" class="label-name">
                 <span class="content-name">Password</span>
             </label>
-            <div *ngFor="let aError of passwordErrors">
-                <small class="form-text-invalid">{{aError}}</small>
-            </div>
         </div>
         <div class="form">
-            <button class="def-button" type="submit">Log In</button>
+            <button class="def-button" type="submit" [disabled]="registerForm.invalid">Log In</button>
         </div>
     </form>
 </div>

@@ -1,0 +1,48 @@
+.form-group {
+    position: relative;
+    height: 50px;
+
+    &__title {
+        color: #575f6e;
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: -5px;
+        text-transform: lowercase;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-top: 8px;
+        height: 18px;
+        text-overflow: ellipsis;
+        width: 100%;
+
+        span {
+            &::first-letter {
+                text-transform: capitalize;
+            }
+        }
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    &__required {
+        display: inline-block;
+        height: auto;
+        color: #575f6e;
+        font-size: 12px;
+        // margin-left: 10px;
+        opacity: 0.5181826636904762;
+    }
+
+}
+
+.form-group__errors-container {
+    margin-top: .5rem;
+}
+
+.form-group__text-invalid {
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
