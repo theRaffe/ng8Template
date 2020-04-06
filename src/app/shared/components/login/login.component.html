@@ -1,12 +1,12 @@
 <div class="main-login">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmitLogin()">
-        <h1>Title Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+        <h1>{{loginOptions?.title}}</h1>
         <div class="form">
             <form-group-input [abstractControl]="username" [dictErrors]="usernameErrors">
                 <input type="text" name="username" aria-label="username" autocomplete="off" required
                     formControlName="username" [readonly]="isReadOnly" />
                 <label for="username" class="label-name">
-                    <span class="content-name">Username</span>
+                    <span class="content-name">{{loginOptions?.usernameLabel}}</span>
                 </label>
             </form-group-input>
         </div>
@@ -14,11 +14,12 @@
             <input type="password" name="password" autocomplete="off" required formControlName="password"
                 [readonly]="isReadOnly" />
             <label for="password" class="label-name">
-                <span class="content-name">Password</span>
+                <span class="content-name">{{loginOptions?.passwordLabel}}</span>
             </label>
         </div>
         <div class="form">
-            <button class="def-button" type="submit" [disabled]="registerForm.invalid">Log In</button>
+            <button class="def-button" type="submit"
+                [disabled]="loginForm.invalid">{{loginOptions?.loginLabel}}</button>
         </div>
     </form>
 </div>
