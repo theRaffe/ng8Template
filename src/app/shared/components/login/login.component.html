@@ -21,5 +21,26 @@
             <button class="def-button" type="submit"
                 [disabled]="loginForm.invalid">{{loginOptions?.loginLabel}}</button>
         </div>
+        <div class="form">
+            <button *ngIf="isGoogleIdActive" class="def-button social-login social-login__google" type="button"
+                (click)="onLoginGoogle()">
+                <span class="google-icon__white"></span>
+                <span class="social-login__caption">Google</span></button>
+        </div>
+        <div class="form">
+            <button class="def-button social-login social-login__facebook" type="button">
+                <img class="facebook-icon__white" src="/assets/icons/facebook/login.png">
+                <span class="social-login__caption">Facebook</span></button>
+        </div>
+        <div class="form">
+            <button class="def-button" type="button" (click)="signOut()">Sign out social</button>
+        </div>
+        <div class="form">
+            <img src="{{ user?.photoUrl }}">
+            <div>
+                <h4>{{ user?.name }}</h4>
+                <p>{{ user?.email }}</p>
+            </div>
+        </div>
     </form>
 </div>

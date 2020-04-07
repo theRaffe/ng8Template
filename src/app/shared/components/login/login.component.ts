@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ILoginOptions } from './login.options';
+import { AuthService, SocialUser } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 
 @Component({
@@ -20,6 +22,9 @@ export class LoginComponent implements OnInit {
     get username(): AbstractControl { return this.loginForm.get('username'); }
     get password(): AbstractControl { return this.loginForm.get('password'); }
 
+    public user: SocialUser;
+    public isGoogleIdActive = false;
+
     @Input()
     public loginOptions: ILoginOptions = {
         title: 'Title App',
@@ -32,7 +37,8 @@ export class LoginComponent implements OnInit {
     public submitLogin: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private authService: AuthService
     ) {
         this.loginForm = this.formBuilder.group({
             username: ['', [Validators.required, Validators.email]],
@@ -40,10 +46,27 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    ngOnDestroy() {
+        this.signOut();
+    }
+
     ngOnInit() {
         setTimeout(() => {
             this.isReadOnly = false;
         }, 1500);
+
+        this.authService.authState.subscribe((user) => {
+            this.user = user;
+            console.log('printin id user:', user);
+
+        });
+
+        this.authService.readyState.subscribe(result => {
+            console.log('printing readyState:', result);
+            this.isGoogleIdActive = result.indexOf(GoogleLoginProvider.PROVIDER_ID) > -1;
+        })
+
+
     }
 
     public onSubmitLogin(): void {
@@ -55,8 +78,14 @@ export class LoginComponent implements OnInit {
         this.submitLogin.emit(this.loginForm.value);
     }
 
-    ngAfterContentInit() {
-
+    onLoginGoogle() {
+        console.log('login to:', GoogleLoginProvider.PROVIDER_ID);
+        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     }
+
+    signOut(): void {
+        this.authService.signOut();
+    }
+
 
 }

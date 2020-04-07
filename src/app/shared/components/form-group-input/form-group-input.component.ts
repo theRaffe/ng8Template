@@ -30,7 +30,7 @@ export class FormGroupInputComponent implements OnInit, OnChanges, AfterContentI
     private dictErrors: { [key: string]: string };
 
     @Input()
-    private abstractControl: AbstractControl;
+    public abstractControl: AbstractControl;
     @ContentChild('input', { static: true }) input: ElementRef;
 
     ngOnInit() {

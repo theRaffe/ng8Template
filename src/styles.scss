@@ -2,13 +2,30 @@
 @import "./assets/css/components/form-group-input.component.scss";
 
 /* You can add global styles to this file, and also import other style files */
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .form-text-invalid {
     color: #d85b5b;
+}
+
+.google-icon__white {
+    width: 18px;
+    height: 18px;
+    background-image: url("/assets/icons/google/login.svg");
+}
+
+.google-icon__color {
+    width: 18px;
+    height: 18px;
+    background-image: url("/assets/icons/google/login-color.svg");
+}
+
+.facebook-icon__white {
+    width: 16px;
+    height: 16px;
 }
