@@ -22,13 +22,13 @@
                 [disabled]="loginForm.invalid">{{loginOptions?.loginLabel}}</button>
         </div>
         <div class="form">
-            <button *ngIf="isGoogleIdActive" class="def-button social-login social-login__google" type="button"
+            <button *ngIf="isGoogleProvider" class="def-button social-login social-login__google" type="button"
                 (click)="onLoginGoogle()">
                 <span class="google-icon__white"></span>
                 <span class="social-login__caption">Google</span></button>
         </div>
         <div class="form">
-            <button class="def-button social-login social-login__facebook" type="button">
+            <button *ngIf="isFacebookProvider" class="def-button social-login social-login__facebook" type="button">
                 <img class="facebook-icon__white" src="/assets/icons/facebook/login.png">
                 <span class="social-login__caption">Facebook</span></button>
         </div>

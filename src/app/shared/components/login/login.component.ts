@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from "angularx-social-login";
 import { ILoginOptions } from './login.options';
-import { AuthService, SocialUser } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 
 @Component({
@@ -23,7 +22,8 @@ export class LoginComponent implements OnInit {
     get password(): AbstractControl { return this.loginForm.get('password'); }
 
     public user: SocialUser;
-    public isGoogleIdActive = false;
+    public isGoogleProvider = false;
+    public isFacebookProvider = false;
 
     @Input()
     public loginOptions: ILoginOptions = {
@@ -62,11 +62,9 @@ export class LoginComponent implements OnInit {
         });
 
         this.authService.readyState.subscribe(result => {
-            console.log('printing readyState:', result);
-            this.isGoogleIdActive = result.indexOf(GoogleLoginProvider.PROVIDER_ID) > -1;
-        })
-
-
+            this.isGoogleProvider = result.indexOf(GoogleLoginProvider.PROVIDER_ID) > -1;
+            this.isFacebookProvider = result.indexOf(FacebookLoginProvider.PROVIDER_ID) > -1;
+        });
     }
 
     public onSubmitLogin(): void {
@@ -79,8 +77,11 @@ export class LoginComponent implements OnInit {
     }
 
     onLoginGoogle() {
-        console.log('login to:', GoogleLoginProvider.PROVIDER_ID);
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    }
+
+    onLoginFacebook() {
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
 
     signOut(): void {
