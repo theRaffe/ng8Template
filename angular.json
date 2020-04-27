@@ -25,10 +25,11 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/md-date-time-picker/dist/css/mdDateTimePicker.min.css",
             ],
             "scripts": []
           },
